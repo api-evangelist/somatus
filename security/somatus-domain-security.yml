@@ -1,0 +1,28 @@
+generated: '2026-07-31'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: somatus.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 13 22:52:19 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: connect.renaliq.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb  1 18:13:30 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: somatus.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: renaliq.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

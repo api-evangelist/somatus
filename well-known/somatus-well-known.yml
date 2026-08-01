@@ -1,0 +1,75 @@
+generated: '2026-07-31'
+method: probed
+source: live GET of /.well-known/* on every Somatus host in apis.yml
+note: >-
+  No /.well-known/ discovery document is published on any Somatus host. somatus.com
+  returns 404 for every probed path. my.somatus.com is a single-page-app catch-all
+  that answers HTTP 200 with the same HTML shell for every /.well-known/* path — those
+  200s are NOT documents and are recorded here as html-catchall so a later round does
+  not mistake them for hits. connect.renaliq.com returns 404 for every path.
+  A real /llms.txt IS published on somatus.com and is captured separately at
+  llms/somatus-llms.txt.
+hosts:
+- host: https://somatus.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/somatus-llms.txt
+    content_type: text/plain
+- host: https://my.somatus.com
+  note: single-page-app catch-all; every path returns 200 with an HTML shell
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    result: html-catchall
+  - path: /.well-known/openid-configuration
+    status: 200
+    result: html-catchall
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    result: html-catchall
+  - path: /.well-known/agent-card.json
+    status: 200
+    result: html-catchall
+  - path: /.well-known/agent.json
+    status: 200
+    result: html-catchall
+- host: https://connect.renaliq.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-evidence:
+  fetched: '2026-07-31'
+  hosts_probed:
+  - somatus.com
+  - my.somatus.com
+  - connect.renaliq.com
+  - renaliq.com
+  - api.somatus.com
+  - developer.somatus.com
+  unresolved_hosts:
+  - renaliq.com
+  - api.somatus.com
+  - developer.somatus.com
